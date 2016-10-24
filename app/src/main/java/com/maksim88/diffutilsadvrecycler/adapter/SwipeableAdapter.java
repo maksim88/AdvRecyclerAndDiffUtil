@@ -101,6 +101,20 @@ public class SwipeableAdapter extends RecyclerView.Adapter<SwipeableAdapter.View
 
     @Override
     public void onSetSwipeBackground(ViewHolder holder, int position, @SwipeableItemDrawableTypes int type) {
+        int bgColor = 0;
+        switch (type) {
+//            case SwipeableItemConstants.DRAWABLE_SWIPE_NEUTRAL_BACKGROUND:
+//                bgColor = android.R.color.white;
+//                break;
+            case SwipeableItemConstants.DRAWABLE_SWIPE_LEFT_BACKGROUND:
+                bgColor = android.R.color.holo_green_dark;
+                break;
+            case SwipeableItemConstants.DRAWABLE_SWIPE_RIGHT_BACKGROUND:
+                bgColor = android.R.color.holo_blue_bright;
+                break;
+        }
+
+        holder.itemView.setBackgroundResource(bgColor);
     }
 
     @Override
@@ -109,8 +123,8 @@ public class SwipeableAdapter extends RecyclerView.Adapter<SwipeableAdapter.View
     }
 
     private static class MySwipeResultActionRemoveItem extends SwipeResultActionRemoveItem {
-        private SwipeableAdapter adapter;
-        private int position;
+        private final SwipeableAdapter adapter;
+        private final int position;
 
         MySwipeResultActionRemoveItem(SwipeableAdapter adapter, int position) {
             this.adapter = adapter;
